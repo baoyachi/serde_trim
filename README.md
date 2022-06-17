@@ -2,7 +2,7 @@
 ========================================
 [docsrs]: https://docs.rs/serde_string_trim
 
-[![Chrono GitHub Actions](https://github.com/baoyachi/serde_string_trim/workflows/build/badge.svg)](https://github.com/baoyachi/serde_string_trim/actions?query=workflow%3Abuild)
+[![GitHub Actions](https://github.com/baoyachi/serde_string_trim/workflows/check/badge.svg)](https://github.com/baoyachi/serde_string_trim/actions?query=workflow%3Acheck)
 [![Crates.io](https://img.shields.io/crates/v/serde_string_trim.svg)](https://crates.io/crates/serde_string_trim)
 [![Docs.rs](https://docs.rs/serde_string_trim/badge.svg)](https://docs.rs/serde_string_trim)
 [![Download](https://img.shields.io/crates/d/serde_string_trim)](https://crates.io/crates/serde_string_trim)
