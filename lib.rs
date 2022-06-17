@@ -1,5 +1,5 @@
 use serde::{de, Deserialize};
-use trim_in_place::TrimInPlace;
+pub use trim_in_place::*;
 
 pub fn string_trim<'de, D>(d: D) -> Result<String, D::Error>
 where
