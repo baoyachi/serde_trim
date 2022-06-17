@@ -87,4 +87,4 @@ jobs:
       - name: Publish
         shell: bash
         run: |
-          cargo publish --token ${{ secrets.SERDE_STRING_TRIM_GITHUB_TOKEN }}
+          cargo publish --token ${{ secrets.SERDE_TRIM_GITHUB_TOKEN }}

@@ -1,13 +1,13 @@
 [package]
-name = "serde_string_trim"
+name = "serde_trim"
 version = "0.1.0"
 authors = ["baoyachi <liaoymxsdl@gmail.com>"]
 edition = "2021"
 description = "serde deserialize_with String trim"
-keywords = ["serde", "serde trim", "deserialize trim", "deserialize_with", "deserialize_with trim"]
+keywords = ["serde", "serde_trim", "deserialize trim", "deserialize_with", "deserialize_with trim"]
 readme = "README.md"
 categories = ["encoding"]
-repository = "https://github.com/baoyachi/serde_string_trim"
+repository = "https://github.com/baoyachi/serde_trim"
 license = "MIT AND Apache-2.0"
 
 [lib]
