@@ -12,7 +12,7 @@
 ## how to use
 ```rust
 fn main() {
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Foo {
         #[serde(deserialize_with = "string_trim")]
         name: String,
@@ -20,5 +20,14 @@ fn main() {
     let json = r#"{"name":" "}"#;
     let foo = serde_json::from_str::<Foo>(json).unwrap();
     assert_eq!(foo.name, "");
+
+    #[derive(Deserialize)]
+    struct OptionFoo {
+        #[serde(deserialize_with = "option_string_trim")]
+        name: Option<String>,
+    }
+    let json = r#"{"name":" "}"#;
+    let foo = serde_json::from_str::<OptionFoo>(json).unwrap();
+    assert_eq!(foo.name, None);
 }
 ```
