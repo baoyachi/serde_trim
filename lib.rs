@@ -2,8 +2,8 @@ use serde::{de, Deserialize};
 use trim_in_place::TrimInPlace;
 
 pub fn string_trim<'de, D>(d: D) -> Result<String, D::Error>
-    where
-        D: de::Deserializer<'de>,
+where
+    D: de::Deserializer<'de>,
 {
     let mut de_string = String::deserialize(d)?;
     de_string.trim_in_place();
