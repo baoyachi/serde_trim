@@ -29,5 +29,16 @@ fn main() {
     let json = r#"{"name":" "}"#;
     let foo = serde_json::from_str::<OptionFoo>(json).unwrap();
     assert_eq!(foo.name, None);
+
+    #[derive(Deserialize)]
+    struct OptionBar {
+        #[serde(default, deserialize_with = "option_string_trim")]
+        name: Option<String>,
+        addr: String,
+    }
+    let json = r#"{"addr":"ABC"}"#;
+    let foo = serde_json::from_str::<OptionBar>(json).unwrap();
+    assert_eq!(foo.name, None);
+    assert_eq!(foo.addr, "ABC");
 }
 ```
