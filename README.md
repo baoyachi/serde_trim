@@ -10,9 +10,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/baoyachi/serde_trim/badge.svg)](https://coveralls.io/github/baoyachi/serde_trim)
 
 ## Support trim
-* String
-* Vec<String>
-* Option<String>
+* `String`
+* `Vec<String>`
+* `Option<String>`
 
 
 ## how to use
