@@ -9,6 +9,12 @@
 [![DepStatus](https://deps.rs/repo/github/baoyachi/serde_trim/status.svg)](https://deps.rs/repo/github/baoyachi/serde_trim)
 [![Coverage Status](https://coveralls.io/repos/github/baoyachi/serde_trim/badge.svg)](https://coveralls.io/github/baoyachi/serde_trim)
 
+## Support trim
+* String
+* Vec<String>
+* Option<String>
+
+
 ## how to use
 ```rust
 fn main() {
