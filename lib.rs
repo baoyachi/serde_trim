@@ -1,5 +1,3 @@
-#![allow(clippy::disallowed_names)]
-
 use serde::{de, Deserialize};
 pub use trim_in_place::*;
 
