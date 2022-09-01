@@ -40,5 +40,14 @@ fn main() {
     let foo = serde_json::from_str::<OptionBar>(json).unwrap();
     assert_eq!(foo.name, None);
     assert_eq!(foo.addr, "ABC");
+
+    #[derive(Deserialize)]
+    struct VecFoo {
+        #[serde(deserialize_with = "vec_string_trim")]
+        name: Vec<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<VecFoo>(json).unwrap();
+    assert_eq!(foo.name, vec!["", "foo", "b ar", "hello", "rust"]);
 }
 ```

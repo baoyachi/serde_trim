@@ -1,3 +1,5 @@
+#![allow(clippy::disallowed_names)]
+
 use serde::{de, Deserialize};
 pub use trim_in_place::*;
 
@@ -7,6 +9,17 @@ where
 {
     let mut de_string = String::deserialize(d)?;
     de_string.trim_in_place();
+    Ok(de_string)
+}
+
+pub fn vec_string_trim<'de, D>(d: D) -> Result<Vec<String>, D::Error>
+where
+    D: de::Deserializer<'de>,
+{
+    let de_string: Vec<String> = Vec::<String>::deserialize(d)?
+        .into_iter()
+        .map(|mut x| x.trim_in_place().to_string())
+        .collect();
     Ok(de_string)
 }
 
@@ -21,6 +34,18 @@ where
         }
     }
     Ok(de_string)
+}
+
+#[test]
+fn test_vec_string_trim() {
+    #[derive(Deserialize)]
+    struct VecFoo {
+        #[serde(deserialize_with = "vec_string_trim")]
+        name: Vec<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<VecFoo>(json).unwrap();
+    assert_eq!(foo.name, vec!["", "foo", "b ar", "hello", "rust"]);
 }
 
 #[test]

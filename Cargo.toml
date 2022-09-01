@@ -1,6 +1,6 @@
 [package]
 name = "serde_trim"
-version = "0.3.1"
+version = "0.4.0"
 authors = ["baoyachi <liaoymxsdl@gmail.com>"]
 edition = "2021"
 description = "serde deserialize_with String trim"
