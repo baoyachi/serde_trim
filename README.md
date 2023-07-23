@@ -12,6 +12,7 @@
 ## Support trim
 * `String`
 * `Vec<String>`
+* `BTreeSet<String>`
 * `Option<String>`
 
 
@@ -55,5 +56,21 @@ fn main() {
     let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
     let foo = serde_json::from_str::<VecFoo>(json).unwrap();
     assert_eq!(foo.name, vec!["", "foo", "b ar", "hello", "rust"]);
+
+    #[derive(Deserialize)]
+    struct BTreeSetFoo {
+        #[serde(deserialize_with = "btreeset_string_trim")]
+        name: BTreeSet<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<BTreeSetFoo>(json).unwrap();
+    let expected: BTreeSet<String> = BTreeSet::from_iter([
+        "".into(),
+        "foo".into(),
+        "b ar".into(),
+        "hello".into(),
+        "rust".into(),
+    ]);
+    assert_eq!(foo.name, expected);
 }
 ```
