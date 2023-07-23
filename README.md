@@ -11,13 +11,24 @@
 
 ## Support trim
 * `String`
+* `Option<String>`
 * `Vec<String>`
 * `BTreeSet<String>`
-* `Option<String>`
+* `HashSet<String>`
+* `VecDeque<String>`
+* `LinkedList<String>`
+* `BinaryHeap<String>`
+
+Supports multiple [std::collections](https://doc.rust-lang.org/stable/std/collections/) types
+ 
 
 
 ## how to use
 ```rust
+use serde_derive::Deserialize;
+use serde_trim::*;
+use std::collections::*;
+
 fn main() {
     #[derive(Deserialize)]
     struct Foo {
@@ -72,5 +83,61 @@ fn main() {
         "rust".into(),
     ]);
     assert_eq!(foo.name, expected);
+
+    #[derive(Deserialize)]
+    struct HashSetFoo {
+        #[serde(deserialize_with = "hashset_string_trim")]
+        name: HashSet<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<HashSetFoo>(json).unwrap();
+    let expected: HashSet<String> = HashSet::from_iter([
+        "".into(),
+        "foo".into(),
+        "b ar".into(),
+        "hello".into(),
+        "rust".into(),
+    ]);
+    assert_eq!(foo.name, expected);
+
+    #[derive(Deserialize)]
+    struct VecDequeFoo {
+        #[serde(deserialize_with = "vecdeque_string_trim")]
+        name: VecDeque<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<VecDequeFoo>(json).unwrap();
+    assert_eq!(foo.name, vec!["", "foo", "b ar", "hello", "rust"]);
+
+    #[derive(Deserialize)]
+    struct LinkedListFoo {
+        #[serde(deserialize_with = "linkedlist_string_trim")]
+        name: LinkedList<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<LinkedListFoo>(json).unwrap();
+    assert_eq!(
+        foo.name,
+        LinkedList::from_iter([
+            "".into(),
+            "foo".into(),
+            "b ar".into(),
+            "hello".into(),
+            "rust".into(),
+        ])
+    );
+
+    #[derive(Deserialize)]
+    struct BinaryHeapFoo {
+        #[serde(deserialize_with = "binaryheap_string_trim")]
+        name: BinaryHeap<String>,
+    }
+    let json = r#"{"name":["   ","foo","b ar","hello ","  rust"]}"#;
+    let foo = serde_json::from_str::<BinaryHeapFoo>(json).unwrap();
+    assert_eq!(
+        foo.name.into_vec(),
+        vec!["rust", "hello", "b ar", "", "foo"]
+    );
 }
+
 ```
