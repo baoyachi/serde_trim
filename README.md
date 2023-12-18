@@ -20,8 +20,25 @@
 * `BinaryHeap<String>`
 
 Supports multiple [std::collections](https://doc.rust-lang.org/stable/std/collections/) types
- 
 
+The current also supports **non-empty** trim
+
+## support function collection:
+* binaryheap_non_empty_string_trim
+* binaryheap_string_trim
+* btreeset_non_empty_string_trim
+* btreeset_string_trim
+* hashset_non_empty_string_trim
+* hashset_string_trim
+* inkedlist_non_empty_string_trim
+* linkedlist_string_trim
+* option_string_trim
+* string_trim
+* vec_non_empty_string_trim
+* vec_string_trim
+* vecdeque_non_empty_string_trim
+* vecdeque_string_trim
+ 
 
 ## how to use
 ```rust

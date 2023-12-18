@@ -1,6 +1,6 @@
 [package]
 name = "serde_trim"
-version = "1.0.0"
+version = "1.1.0"
 authors = ["baoyachi <liaoymxsdl@gmail.com>"]
 edition = "2021"
 description = "serde deserialize_with String trim.Supports multiple std::collections types"
